@@ -1,0 +1,160 @@
+{
+  "info": {
+    "name": "Desert Star E-Invoicing Integration Prototype",
+    "description": "Covers Task D scenarios 1-10 against the local prototype. Run 'Valid invoice' first to get a documentId for the status request.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "apiKey", "value": "{{TRAINING_API_KEY}}" },
+    { "key": "documentId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1. Valid standard-rated invoice -> 202",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-valid-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{validInvoice}}" }
+      }
+    },
+    {
+      "name": "2. Missing seller TRN -> 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-missing-trn-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{missingTrnInvoice}}" }
+      }
+    },
+    {
+      "name": "3. Invalid TRN format -> 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-bad-trn-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{invalidTrnInvoice}}" }
+      }
+    },
+    {
+      "name": "4. Unsupported tax category -> 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-bad-category-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{unsupportedTaxCategoryInvoice}}" }
+      }
+    },
+    {
+      "name": "5. Incorrect total / tax calculation -> 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-bad-total-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{incorrectTotalInvoice}}" }
+      }
+    },
+    {
+      "name": "6a. Duplicate retry - first send -> 202",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-dup-key-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{validInvoice}}" }
+      }
+    },
+    {
+      "name": "6b. Duplicate retry - identical retry, same key -> 202, same documentId",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-dup-key-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{validInvoice}}" }
+      }
+    },
+    {
+      "name": "7. Reuse idempotency key with different payload -> 409",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-dup-key-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{validInvoiceDifferentInvoiceNo}}" }
+      }
+    },
+    {
+      "name": "8. Unknown document ID on status -> 404",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "X-Api-Key", "value": "{{apiKey}}" }],
+        "url": "{{baseUrl}}/api/v1/documents/00000000-0000-0000-0000-000000000000/status"
+      }
+    },
+    {
+      "name": "9. Credit note without original invoice reference -> 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "{{apiKey}}" },
+          { "key": "Idempotency-Key", "value": "postman-credit-note-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{creditNoteMissingOriginalInvoice}}" }
+      }
+    },
+    {
+      "name": "10. Unauthorized request (wrong key) -> 401",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Api-Key", "value": "wrong-key" },
+          { "key": "Idempotency-Key", "value": "postman-unauth-001" }
+        ],
+        "url": "{{baseUrl}}/api/v1/invoices",
+        "body": { "mode": "raw", "raw": "{{validInvoice}}" }
+      }
+    },
+    {
+      "name": "Status check (use documentId from response 1)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "X-Api-Key", "value": "{{apiKey}}" }],
+        "url": "{{baseUrl}}/api/v1/documents/{{documentId}}/status"
+      }
+    }
+  ]
+}

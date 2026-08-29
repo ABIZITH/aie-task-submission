@@ -1,0 +1,36 @@
+Source field,Target field,Required/conditional,Transformation/default,Validation,Open question
+sourceName,source.name,Required,Passed through as-is,Must not be empty,None
+sourceVersion,source.version,Required,Passed through as-is,Must not be empty,None
+invoice.invoiceNo,invoiceNo,Required,Passed through as-is,Must not be empty,Is invoiceNo unique per seller TRN or globally?
+invoice.issueDate,issueDate,Required,Passed through as-is,Must match YYYY-MM-DD and be a real calendar date,None
+invoice.documentType,documentType,Required,Passed through as-is,Must be INVOICE or CREDIT_NOTE,None
+invoice.currency,currency,Required,Passed through as-is,Must equal AED for this prototype,How should other currencies and FX rates be represented later?
+invoice.seller.legalName,seller.legalName,Required,Passed through as-is,Must not be empty,None
+invoice.seller.trn,seller.trn,Required,Passed through as-is,Must be exactly 15 numeric characters,None
+invoice.seller.addressLine1,seller.addressLine1,Required,Passed through as-is,Must not be empty,Is a second address line ever needed?
+invoice.seller.city,seller.city,Conditional,Passed through as-is,None enforced in this prototype,Should city be mandatory per PINT AE?
+invoice.seller.emirate,seller.emirate,Required,Passed through as-is,Must not be empty,None
+invoice.seller.country,seller.country,Required,Passed through as-is,Must be a two-letter country code,None
+invoice.buyer.legalName,buyer.legalName,Required,Passed through as-is,Must not be empty,None
+invoice.buyer.trn,buyer.trn,Conditional,Passed through as-is if present,Not validated in this prototype (only seller TRN is required by the assignment),Should buyer TRN be mandatory for B2B invoices?
+invoice.buyer.addressLine1,buyer.addressLine1,Required,Passed through as-is,Must not be empty,None
+invoice.buyer.city,buyer.city,Conditional,Passed through as-is,None enforced in this prototype,Same as seller city question
+invoice.buyer.country,buyer.country,Conditional,Passed through as-is,If present must be a two-letter country code,None
+invoice.lines[].lineId,lines[].lineId,Required,Passed through as-is,Must not be empty,None
+invoice.lines[].sku,lines[].sku,Conditional,Passed through as-is if present,None enforced,Is SKU always available or only for goods (not services)?
+invoice.lines[].description,lines[].description,Required,Passed through as-is,Must not be empty,None
+invoice.lines[].quantity,lines[].quantity,Required,Passed through as-is,Must be greater than zero,None
+invoice.lines[].unitPrice,lines[].unitPrice,Required,Passed through as-is,Must not be negative,None
+invoice.lines[].taxCategory,lines[].taxCategory,Required,Passed through as-is,Must be one of STANDARD/ZERO_RATED/EXEMPT/OUT_OF_SCOPE,None
+invoice.lines[].taxRate (source),lines[].taxRate (normalized),Derived,Recalculated as 5% for STANDARD and 0% for all other categories -- source value is not trusted,Recomputed rate must be internally consistent with taxCategory,Should the prototype flag a mismatch between the source-supplied taxRate and the recalculated rate as a warning?
+(derived) quantity x unitPrice,lines[].lineNet,Derived,Computed and rounded to 2dp (HALF_UP),Used to cross-check invoice.totals.netAmount,None
+(derived) lineNet x rate,lines[].lineTax,Derived,Computed and rounded to 2dp (HALF_UP),Used to cross-check invoice.totals.taxAmount,None
+(derived) lineNet + lineTax,lines[].lineGross,Derived,Computed and rounded to 2dp (HALF_UP),Informational only in this prototype,None
+invoice.totals.netAmount,totals.netAmount,Required,Passed through as-is,Must equal the sum of line net amounts (2dp),None
+invoice.totals.taxAmount,totals.taxAmount,Required,Passed through as-is,Must equal the sum of calculated line tax amounts (2dp),None
+invoice.totals.grossAmount,totals.grossAmount,Required,Passed through as-is,Must equal netAmount + taxAmount (2dp),None
+invoice.totals.prepaidAmount,totals.prepaidAmount,Conditional,Defaults are not applied -- passed through as-is or null,Not validated in this prototype,Should prepaidAmount be required and reconciled against amountDue?
+invoice.totals.amountDue,totals.amountDue,Conditional,Passed through as-is,Not validated in this prototype,Should amountDue = grossAmount - prepaidAmount be enforced?
+invoice.payment.method,payment.method,Required,Passed through as-is,Must not be empty,Should there be an enumerated list of accepted payment methods?
+invoice.payment.terms,payment.terms,Conditional,Passed through as-is if present,None enforced,None
+invoice.originalInvoiceNo,originalInvoiceNo,Conditional,Passed through as-is (null unless CREDIT_NOTE),Required and must not be empty when documentType = CREDIT_NOTE,Should the prototype verify the referenced invoice actually exists in the store?

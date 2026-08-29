@@ -1,0 +1,56 @@
+{
+  "id": "6e6e7299-f9b5-47b0-b246-457878250ed3",
+  "name": "Local prototype",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "enabled": true
+    },
+    {
+      "key": "apiKey",
+      "value": "<set to the value of TRAINING_API_KEY>",
+      "enabled": true
+    },
+    {
+      "key": "documentId",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "validInvoice",
+      "value": "{\"sourceName\": \"desert-star-erp\", \"sourceVersion\": \"1.0\", \"invoice\": {\"invoiceNo\": \"INV-2025-1001\", \"issueDate\": \"2025-02-15\", \"documentType\": \"INVOICE\", \"currency\": \"AED\", \"seller\": {\"legalName\": \"Desert Star Trading LLC\", \"trn\": \"100000000000003\", \"addressLine1\": \"100 Training Street\", \"city\": \"Dubai\", \"emirate\": \"Dubai\", \"country\": \"AE\"}, \"buyer\": {\"legalName\": \"Oasis Retail LLC\", \"trn\": \"200000000000005\", \"addressLine1\": \"200 Example Road\", \"city\": \"Abu Dhabi\", \"emirate\": \"Abu Dhabi\", \"country\": \"AE\"}, \"lines\": [{\"lineId\": \"1\", \"sku\": \"CONSULT-001\", \"description\": \"Implementation consulting\", \"quantity\": 2, \"unitPrice\": 1000.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}, {\"lineId\": \"2\", \"sku\": \"TRAIN-001\", \"description\": \"User training\", \"quantity\": 1, \"unitPrice\": 500.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}], \"totals\": {\"netAmount\": 2500.0, \"taxAmount\": 125.0, \"grossAmount\": 2625.0, \"prepaidAmount\": 0.0, \"amountDue\": 2625.0}, \"payment\": {\"method\": \"BANK_TRANSFER\", \"terms\": \"Pay within 30 days\"}, \"originalInvoiceNo\": null}}",
+      "enabled": true
+    },
+    {
+      "key": "validInvoiceDifferentInvoiceNo",
+      "value": "{\"sourceName\": \"desert-star-erp\", \"sourceVersion\": \"1.0\", \"invoice\": {\"invoiceNo\": \"INV-2025-9999\", \"issueDate\": \"2025-02-15\", \"documentType\": \"INVOICE\", \"currency\": \"AED\", \"seller\": {\"legalName\": \"Desert Star Trading LLC\", \"trn\": \"100000000000003\", \"addressLine1\": \"100 Training Street\", \"city\": \"Dubai\", \"emirate\": \"Dubai\", \"country\": \"AE\"}, \"buyer\": {\"legalName\": \"Oasis Retail LLC\", \"trn\": \"200000000000005\", \"addressLine1\": \"200 Example Road\", \"city\": \"Abu Dhabi\", \"emirate\": \"Abu Dhabi\", \"country\": \"AE\"}, \"lines\": [{\"lineId\": \"1\", \"sku\": \"CONSULT-001\", \"description\": \"Implementation consulting\", \"quantity\": 2, \"unitPrice\": 1000.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}, {\"lineId\": \"2\", \"sku\": \"TRAIN-001\", \"description\": \"User training\", \"quantity\": 1, \"unitPrice\": 500.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}], \"totals\": {\"netAmount\": 2500.0, \"taxAmount\": 125.0, \"grossAmount\": 2625.0, \"prepaidAmount\": 0.0, \"amountDue\": 2625.0}, \"payment\": {\"method\": \"BANK_TRANSFER\", \"terms\": \"Pay within 30 days\"}, \"originalInvoiceNo\": null}}",
+      "enabled": true
+    },
+    {
+      "key": "missingTrnInvoice",
+      "value": "{\"sourceName\": \"desert-star-erp\", \"sourceVersion\": \"1.0\", \"invoice\": {\"invoiceNo\": \"INV-2025-1001\", \"issueDate\": \"2025-02-15\", \"documentType\": \"INVOICE\", \"currency\": \"AED\", \"seller\": {\"legalName\": \"Desert Star Trading LLC\", \"addressLine1\": \"100 Training Street\", \"city\": \"Dubai\", \"emirate\": \"Dubai\", \"country\": \"AE\"}, \"buyer\": {\"legalName\": \"Oasis Retail LLC\", \"trn\": \"200000000000005\", \"addressLine1\": \"200 Example Road\", \"city\": \"Abu Dhabi\", \"emirate\": \"Abu Dhabi\", \"country\": \"AE\"}, \"lines\": [{\"lineId\": \"1\", \"sku\": \"CONSULT-001\", \"description\": \"Implementation consulting\", \"quantity\": 2, \"unitPrice\": 1000.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}, {\"lineId\": \"2\", \"sku\": \"TRAIN-001\", \"description\": \"User training\", \"quantity\": 1, \"unitPrice\": 500.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}], \"totals\": {\"netAmount\": 2500.0, \"taxAmount\": 125.0, \"grossAmount\": 2625.0, \"prepaidAmount\": 0.0, \"amountDue\": 2625.0}, \"payment\": {\"method\": \"BANK_TRANSFER\", \"terms\": \"Pay within 30 days\"}, \"originalInvoiceNo\": null}}",
+      "enabled": true
+    },
+    {
+      "key": "invalidTrnInvoice",
+      "value": "{\"sourceName\": \"desert-star-erp\", \"sourceVersion\": \"1.0\", \"invoice\": {\"invoiceNo\": \"INV-2025-1001\", \"issueDate\": \"2025-02-15\", \"documentType\": \"INVOICE\", \"currency\": \"AED\", \"seller\": {\"legalName\": \"Desert Star Trading LLC\", \"trn\": \"ABC123\", \"addressLine1\": \"100 Training Street\", \"city\": \"Dubai\", \"emirate\": \"Dubai\", \"country\": \"AE\"}, \"buyer\": {\"legalName\": \"Oasis Retail LLC\", \"trn\": \"200000000000005\", \"addressLine1\": \"200 Example Road\", \"city\": \"Abu Dhabi\", \"emirate\": \"Abu Dhabi\", \"country\": \"AE\"}, \"lines\": [{\"lineId\": \"1\", \"sku\": \"CONSULT-001\", \"description\": \"Implementation consulting\", \"quantity\": 2, \"unitPrice\": 1000.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}, {\"lineId\": \"2\", \"sku\": \"TRAIN-001\", \"description\": \"User training\", \"quantity\": 1, \"unitPrice\": 500.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}], \"totals\": {\"netAmount\": 2500.0, \"taxAmount\": 125.0, \"grossAmount\": 2625.0, \"prepaidAmount\": 0.0, \"amountDue\": 2625.0}, \"payment\": {\"method\": \"BANK_TRANSFER\", \"terms\": \"Pay within 30 days\"}, \"originalInvoiceNo\": null}}",
+      "enabled": true
+    },
+    {
+      "key": "unsupportedTaxCategoryInvoice",
+      "value": "{\"sourceName\": \"desert-star-erp\", \"sourceVersion\": \"1.0\", \"invoice\": {\"invoiceNo\": \"INV-2025-1001\", \"issueDate\": \"2025-02-15\", \"documentType\": \"INVOICE\", \"currency\": \"AED\", \"seller\": {\"legalName\": \"Desert Star Trading LLC\", \"trn\": \"100000000000003\", \"addressLine1\": \"100 Training Street\", \"city\": \"Dubai\", \"emirate\": \"Dubai\", \"country\": \"AE\"}, \"buyer\": {\"legalName\": \"Oasis Retail LLC\", \"trn\": \"200000000000005\", \"addressLine1\": \"200 Example Road\", \"city\": \"Abu Dhabi\", \"emirate\": \"Abu Dhabi\", \"country\": \"AE\"}, \"lines\": [{\"lineId\": \"1\", \"sku\": \"CONSULT-001\", \"description\": \"Implementation consulting\", \"quantity\": 2, \"unitPrice\": 1000.0, \"taxCategory\": \"LUXURY\", \"taxRate\": 5}, {\"lineId\": \"2\", \"sku\": \"TRAIN-001\", \"description\": \"User training\", \"quantity\": 1, \"unitPrice\": 500.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}], \"totals\": {\"netAmount\": 2500.0, \"taxAmount\": 125.0, \"grossAmount\": 2625.0, \"prepaidAmount\": 0.0, \"amountDue\": 2625.0}, \"payment\": {\"method\": \"BANK_TRANSFER\", \"terms\": \"Pay within 30 days\"}, \"originalInvoiceNo\": null}}",
+      "enabled": true
+    },
+    {
+      "key": "incorrectTotalInvoice",
+      "value": "{\"sourceName\": \"desert-star-erp\", \"sourceVersion\": \"1.0\", \"invoice\": {\"invoiceNo\": \"INV-2025-1001\", \"issueDate\": \"2025-02-15\", \"documentType\": \"INVOICE\", \"currency\": \"AED\", \"seller\": {\"legalName\": \"Desert Star Trading LLC\", \"trn\": \"100000000000003\", \"addressLine1\": \"100 Training Street\", \"city\": \"Dubai\", \"emirate\": \"Dubai\", \"country\": \"AE\"}, \"buyer\": {\"legalName\": \"Oasis Retail LLC\", \"trn\": \"200000000000005\", \"addressLine1\": \"200 Example Road\", \"city\": \"Abu Dhabi\", \"emirate\": \"Abu Dhabi\", \"country\": \"AE\"}, \"lines\": [{\"lineId\": \"1\", \"sku\": \"CONSULT-001\", \"description\": \"Implementation consulting\", \"quantity\": 2, \"unitPrice\": 1000.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}, {\"lineId\": \"2\", \"sku\": \"TRAIN-001\", \"description\": \"User training\", \"quantity\": 1, \"unitPrice\": 500.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}], \"totals\": {\"netAmount\": 2400.0, \"taxAmount\": 125.0, \"grossAmount\": 2625.0, \"prepaidAmount\": 0.0, \"amountDue\": 2625.0}, \"payment\": {\"method\": \"BANK_TRANSFER\", \"terms\": \"Pay within 30 days\"}, \"originalInvoiceNo\": null}}",
+      "enabled": true
+    },
+    {
+      "key": "creditNoteMissingOriginalInvoice",
+      "value": "{\"sourceName\": \"desert-star-erp\", \"sourceVersion\": \"1.0\", \"invoice\": {\"invoiceNo\": \"CN-2025-0001\", \"issueDate\": \"2025-02-15\", \"documentType\": \"CREDIT_NOTE\", \"currency\": \"AED\", \"seller\": {\"legalName\": \"Desert Star Trading LLC\", \"trn\": \"100000000000003\", \"addressLine1\": \"100 Training Street\", \"city\": \"Dubai\", \"emirate\": \"Dubai\", \"country\": \"AE\"}, \"buyer\": {\"legalName\": \"Oasis Retail LLC\", \"trn\": \"200000000000005\", \"addressLine1\": \"200 Example Road\", \"city\": \"Abu Dhabi\", \"emirate\": \"Abu Dhabi\", \"country\": \"AE\"}, \"lines\": [{\"lineId\": \"1\", \"sku\": \"CONSULT-001\", \"description\": \"Implementation consulting\", \"quantity\": 2, \"unitPrice\": 1000.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}, {\"lineId\": \"2\", \"sku\": \"TRAIN-001\", \"description\": \"User training\", \"quantity\": 1, \"unitPrice\": 500.0, \"taxCategory\": \"STANDARD\", \"taxRate\": 5}], \"totals\": {\"netAmount\": 2500.0, \"taxAmount\": 125.0, \"grossAmount\": 2625.0, \"prepaidAmount\": 0.0, \"amountDue\": 2625.0}, \"payment\": {\"method\": \"BANK_TRANSFER\", \"terms\": \"Pay within 30 days\"}, \"originalInvoiceNo\": null}}",
+      "enabled": true
+    }
+  ]
+}
